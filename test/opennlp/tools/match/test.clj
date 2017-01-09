@@ -23,4 +23,10 @@
   (is (= (m/match [1 2 3 4]
                   '[_ ?x ?y] (list ?x ?y)
                   '[_ _ ?x ?y] (list ?x ?y))
-         '(3 4))))
+         '(3 4)))
+  ; does else work?
+  (is (= (m/match '([a b c] d [e f] g)
+                  '(?x ?y ?z) 'first
+                  '([?x ?y] _) 'second
+                  :else 'third)
+         'third)))
